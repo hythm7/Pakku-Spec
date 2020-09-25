@@ -1,0 +1,40 @@
+#!/usr/bin/env perl6
+#
+use Test;
+use Pakku::Spec;
+
+my \tests = %(
+  ok => (
+    [ 'Spec',                                     'Spec'                                     ],
+    [ 'Spec::Name',                               'Spec::Name'                               ],
+    [ 'Spec:ver<>',                               'Spec:ver<>'                               ],
+    [ 'Spec:ver<*>',                              'Spec:ver<*>'                              ],
+    [ 'Spec:ver<0.0.1>',                          'Spec:ver<0.0.1>'                          ],
+    [ 'Spec:ver<0.0.1>:auth<name>',               'Spec:ver<0.0.1>:auth<name>'               ],
+    [ 'Spec:ver<0.0.1>:auth<name>:api<>',         'Spec:ver<0.0.1>:auth<name>:api<>'         ],
+    [ 'Spec:ver<0.0.1>:auth<name>:api<*>',        'Spec:ver<0.0.1>:auth<email>:api<*>'      ],
+    [ 'Spec:ver<0.0.1>:auth<name>:api<*>',        'Spec:ver<0.0.1>:auth<email>:api<*>'       ],
+    [ 'Spec:ver<0.0.1>:auth<name<email>>:api<*>', 'Spec:ver<0.0.1>:auth<name<email>>:api<*>' ],
+    [ 'Spec:ver(0.0.1):auth<name<email>>:api<*>', 'Spec:ver(0.0.1):auth<name<email>>:api<*>' ],
+    [ {:hints(${"by-kernel.name" => ${:linux(${:checksum(${"sha-256" => "42424242424242424242424242424242424"}), :target("resources/libraries/"), :url("http://raku.org/")})}}), :name("archive:from<native>")}, 'Spec from hash' ],
+  ),
+  nok => (
+    [ 'Spec:abc<def>', 'Spec:abc<def>' ],
+  ),
+);
+
+
+for flat tests<ok> -> $spec, $msg {
+
+   ok Pakku::Spec.new( $spec ) ~~ Pakku::Spec, $msg;
+
+}
+
+for flat tests<nok> -> $spec, $msg {
+
+  dies-ok { Pakku::Spec.new( $spec ) }, $msg;
+
+}
+
+done-testing;
+
