@@ -28,6 +28,16 @@ DESCRIPTION
 ===========
 `Pakku::Spec` is a Dependency Specification for `Pakku`
 
+INSTALLATION
+===========
+```
+pakku add Pakku::Spec
+
+# or 
+
+zef install Pakku::Spec
+```
+
 AUTHOR
 ======
 Haytham Elganiny <elganiny.haytham@gmail.com>
