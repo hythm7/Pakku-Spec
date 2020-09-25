@@ -7,13 +7,13 @@ SYNOPSIS
 ```raku
 use Pakku::Spec;
 
-my $spec = Pakku::Spec.new: 'ModuleName:ver(0.0.1):auth&lt;Camelia &lt;camelia@raku.org&gt;&gt;:api&lt;&gt;';
+my $spec = Pakku::Spec.new: 'ModuleName:ver(0.0.1):auth<Camelia <camelia@raku.org>>:api<>';
 
 say $spec.spec;
-# {api => , auth => Camelia &lt;camelia@raku.org&gt;, from => raku, name => ModuleName, ver => 0.0.1}
+# {api => , auth => Camelia <camelia@raku.org>, from => raku, name => ModuleName, ver => 0.0.1}
 
 
-$spec = Pakku::Spec.new: {:hints(${"by-kernel.name" => ${:linux(${:checksum(${"sha-256" => "E6836E32802555593AEDAFE1CC00752CBDA"}), :target("resources/libraries/"), :url("http://raku.org/")})}}), :name("archive:from&lt;native&gt;")};
+$spec = Pakku::Spec.new: {:hints(${"by-kernel.name" => ${:linux(${:checksum(${"sha-256" => "E6836E32802555593AEDAFE1CC00752CBDA"}), :target("resources/libraries/"), :url("http://raku.org/")})}}), :name("archive:from<native>")};
 
 say $spec.spec;
 # {from => native, name => archive}
