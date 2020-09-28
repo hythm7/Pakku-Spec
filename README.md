@@ -26,7 +26,13 @@ say $spec.hints;
 
 DESCRIPTION
 ===========
-`Pakku::Spec` is a Dependency Specification for `Pakku`
+`Pakku::Spec` is a Dependency Specification used by [Pakku](https://github.com/hythm7/Pakku).
+
+`Pakku::Spec` parses the dependencies specified by `Raku` distributions as string like `My::Dependency:ver<0.0.1+>` or hash like `{ :name<MyLib>,:from<native> }`. also parses the `hints` section if provided in a dependency to provide for example the correct name based on `$*DISTRO` or `$*KERNEL`
+
+`Pakku::Spec` is mainly used by [Pakku::Meta](https://github.com/hythm7/Pakku-Meta)  to parse the `depends` section in `META6.json` files.
+
+
 
 INSTALLATION
 ===========
