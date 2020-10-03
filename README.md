@@ -1,6 +1,6 @@
 NAME
 ====
-`Pakku::Spec` - Dependency Specification for `Pakku`
+`Pakku::Spec` - Dependency Specification for [Pakku](https://github.com/Raku/Blin.git) Package Manager.
 
 SYNOPSIS
 ========
