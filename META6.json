@@ -23,5 +23,5 @@
     "specification"
   ],
   "test-depends" : [ ],
-  "version" : "pupa"
+  "version" : "0.0.1"
 }
