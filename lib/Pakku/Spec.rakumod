@@ -29,8 +29,8 @@ method spec ( ) {
 method gist ( ) {
 
   $!name
-    ~ ( ":auth<" ~ $!auth ~ ">" if defined $!auth )
     ~ ( ":ver<"  ~ $!ver  ~ ">" if defined $!ver  )
+    ~ ( ":auth<" ~ $!auth ~ ">" if defined $!auth )
     ~ ( ":api<"  ~ $!api  ~ ">" if defined $!api  )
     ~ ( ":from<" ~ $!from ~ ">" if defined $!from and $!from ne 'raku'    );
 
