@@ -130,8 +130,8 @@ grammar SpecGrammar {
 
   # Thx to Jo King on SO.
   proto token value { * }
-  token value:sym<angles> { '<' ~ '>' $<val>=[.*? <~~>?] }
-  token value:sym<parens> { '(' ~ ')' $<val>=[.*? <~~>?] }
+  token value:sym<angles> { '<' ~ '>' $<val>=[ <-[>]>* <~~>?] }
+  token value:sym<parens> { '(' ~ ')' $<val>=[ <-[>]>* <~~>?] }
 
 
 }
