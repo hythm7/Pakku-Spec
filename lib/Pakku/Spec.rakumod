@@ -204,6 +204,10 @@ multi method new ( IO $prefix! ) {
 
 multi method new ( %spec! ) {
 
+  return self.new: %spec<any> if %spec<any>;
+
+  die X::Pakku::Spec.new: :%spec unless %spec<name>;
+
   given %spec<name> {
 
     when Str {
@@ -217,9 +221,8 @@ multi method new ( %spec! ) {
 
       %spec<name> = .<by-distro.name>{ $*DISTRO.name } // .<by-distro.name>{''};
     }
-  }
 
-  die X::Pakku::Spec.new: :%spec unless %spec<name>;
+  }
 
   self.bless: |%spec;
 
