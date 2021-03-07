@@ -43,11 +43,19 @@ multi method ACCEPTS ( ::?CLASS:D: %h --> Bool:D ) {
   do return False unless Version.new( %h<ver> // %h<version> ) ~~ Version.new( $!ver )  if defined $!ver;
   do return False unless %h<auth> ~~ $!auth if defined $!auth;
   do return False unless %h<api>  ~~ $!api  if defined $!api;
+  do return False unless %h<name> ~~ $!name;
   #do return False unless %h<from> ~~ $!from if defined $!from;
 
   True;
 
 }
+
+multi method ACCEPTS ( ::?CLASS:D: Pakku::Spec:D $spec! --> Bool:D ) {
+
+  samewith $spec.spec;
+
+}
+
 
 my class Hints {
 
@@ -191,10 +199,10 @@ multi method new ( IO $prefix! ) {
 
   my $meta-file = @meta.map( -> $file { $prefix.add: $file } ).first( *.f );
 
+
   die X::Pakku::Spec.new: spec => $prefix unless $meta-file;
 
-
-  my %meta = Rakudo::Internals::JSON.from-json: "$prefix/META6.json".IO.slurp;
+  my %meta = Rakudo::Internals::JSON.from-json: $meta-file.slurp;
 
   %meta<ver> //= %meta<version>;
 
