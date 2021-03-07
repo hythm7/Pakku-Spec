@@ -40,10 +40,13 @@ method Str ( ) { self.gist }
 
 multi method ACCEPTS ( ::?CLASS:D: %h --> Bool:D ) {
 
+  # disable match by name to allow
+  # match for %provides
+  #do return False unless %h<name> ~~ $!name;
+  #
   do return False unless Version.new( %h<ver> // %h<version> ) ~~ Version.new( $!ver )  if defined $!ver;
   do return False unless %h<auth> ~~ $!auth if defined $!auth;
   do return False unless %h<api>  ~~ $!api  if defined $!api;
-  do return False unless %h<name> ~~ $!name;
   #do return False unless %h<from> ~~ $!from if defined $!from;
 
   True;
